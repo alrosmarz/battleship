@@ -27,7 +27,7 @@ namespace Battleship.Ascii
          Console.WriteLine(@"                    +---------------___[}-_===_.'____                 /\");
          Console.WriteLine(@"                ____`-' ||___-{]_| _[}-  |     |_[___\==--            \/   _");
          Console.WriteLine(@" __..._____--==/___]_|__|_____________________________[___\==--____,------' .7");
-         Console.WriteLine(@"|                        Welcome to Battleship                         BB-61/");
+         Console.WriteLine(@"|                        Welcome to FUEGO PARIENTE!                    BB-61/");
          Console.WriteLine(@" \_________________________________________________________________________|");
          Console.WriteLine();
 
