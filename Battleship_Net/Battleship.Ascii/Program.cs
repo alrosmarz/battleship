@@ -4,8 +4,8 @@ namespace Battleship.Ascii
    using System;
    using System.Collections.Generic;
    using System.Linq;
-
-   using Battleship.GameController;
+    using System.Text.RegularExpressions;
+    using Battleship.GameController;
    using Battleship.GameController.Contracts;
 
    internal class Program
@@ -95,11 +95,20 @@ namespace Battleship.Ascii
          while (true);
       }
 
-      internal static Position ParsePosition(string input)
-      {
-         var letter = (Letters)Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
-         var number = int.Parse(input.Substring(1, 1));
-         return new Position(letter, number);
+        internal static Position ParsePosition(string input)
+        {
+            string pattern = "^[a-hA-H][1-9]$";
+            Match m = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
+            if (m.Success)
+            {
+                var letter = (Letters)Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
+                var number = int.Parse(input.Substring(1, 1));
+                return new Position(letter, number);
+            }
+            else { Console.WriteLine(Battleship.GameController.GameController.MensajeDeError());
+                return ParsePosition(Console.ReadLine());
+            }
+                
       }
 
       private static Position GetRandomPosition()
