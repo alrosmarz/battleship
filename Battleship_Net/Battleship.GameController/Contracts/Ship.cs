@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using Battleship.GameController.Annotations;
-
+using System.Text.RegularExpressions;
 namespace Battleship.GameController.Contracts
 {
     using System;
@@ -59,16 +59,34 @@ namespace Battleship.GameController.Contracts
         /// <param name="input">
         /// The input.
         /// </param>
-        public void AddPosition(string input)
+        public bool AddPosition(string input)
         {
             if (Positions == null)
             {
                 Positions = new List<Position>();
             }
 
-            var letter = (Letters)Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
-            var number = int.Parse(input.Substring(1, 1));
-            Positions.Add(new Position { Column = letter, Row = number });
+            try
+            {
+                string pattern = "^[a-hA-H][1-9]$";
+                Match m = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
+                if (m.Success)
+                {
+                    var letter = (Letters)Enum.Parse(typeof(Letters), input.ToUpper().Substring(0, 1));
+                    var number = int.Parse(input.Substring(1, 1));
+                    Positions.Add(new Position { Column = letter, Row = number });
+                    return true;
+                }
+                else
+                {
+                   Console.WriteLine( Battleship.GameController.GameController.MensajeDeError());
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool IsPlaced

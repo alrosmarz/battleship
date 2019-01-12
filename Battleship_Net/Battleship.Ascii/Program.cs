@@ -133,7 +133,9 @@ namespace Battleship.Ascii
             for (var i = 1; i <= ship.Size; i++)
             {
                Console.WriteLine("Enter position {0} of {1} (i.e A3):", i, ship.Size);
-               ship.AddPosition(Console.ReadLine());
+               bool respuesta = ship.AddPosition(Console.ReadLine());
+
+                    if (!respuesta) i--;
             }
          }
       }
