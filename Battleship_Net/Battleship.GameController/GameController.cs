@@ -99,7 +99,7 @@ namespace Battleship.GameController
 
         public static string MensajeDeError()
         {
-            return "El valor introducido no es correcto, los valores correctos van de A a H y del numero 1 al 8. ejemplo valido: A6, ejemplo no valido X6";
+            return "El valor introducido no es correct, ingrese uno nuevo";
         }
      }
 }
