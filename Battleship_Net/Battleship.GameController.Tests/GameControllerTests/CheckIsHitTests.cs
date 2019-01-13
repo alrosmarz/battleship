@@ -79,5 +79,18 @@
         {
             GameController.CheckIsHit(null, new Position(Letters.H, 1));
         }
-    }
+
+		[TestMethod]
+		public void ComputerShotAllMyPositions()
+		{
+
+		}
+
+		[TestMethod]
+		public void UserShotAllComputerPositions()
+		{
+
+		}
+
+	}
 }
