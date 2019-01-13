@@ -1,15 +1,16 @@
 ﻿namespace Battleship.GameController.Tests.GameControllerTests
 {
-    using System;
+	using System;
 
-    using Battleship.GameController.Contracts;
+	using Battleship.GameController.Contracts;
 
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+	using Microsoft.VisualStudio.TestTools.UnitTesting;
+	using System.Collections.Generic;
 
-    /// <summary>
-    /// The game controller tests.
-    /// </summary>
-    [TestClass]
+	/// <summary>
+	/// The game controller tests.
+	/// </summary>
+	[TestClass]
     public class GameControllerTests
     {
         /// <summary>
@@ -83,7 +84,12 @@
 		[TestMethod]
 		public void HitAllPositionsOfOponent()
 		{
-
+			List<Ship> fleet = new List<Ship>();
+			Ship ship = new Ship();
+			ship.AddPosition("A1");
+			fleet.Add(ship);
+			GameController.CheckIsHit(fleet, new Position() { Column = Letters.A, Row = 1 });
+			Assert.AreEqual(true,GameController.GameOver(fleet));
 		}
 
         [TestMethod]
