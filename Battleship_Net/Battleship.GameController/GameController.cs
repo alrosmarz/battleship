@@ -104,7 +104,9 @@ namespace Battleship.GameController
 
         public static string CoolHappyEnding()
         {
-            return "Arre!";
+
+            return "FELICIDADES PARIENTE , HAS GANADO! ***";
+
         }
      }
 }
