@@ -101,5 +101,10 @@ namespace Battleship.GameController
         {
             return "El valor introducido no es correct, ingrese uno nuevo";
         }
+
+        public static string CoolHappyEnding()
+        {
+            return "Arre!";
+        }
      }
 }
