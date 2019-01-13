@@ -120,7 +120,7 @@ namespace Battleship.Ascii
                     Console.WriteLine(@"                 -\  \     /  /-");
                     Console.WriteLine(@"                   \  \   /  /");
 
-                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Computer shot in {0}{1} and has hit your ship !", position.Column, position.Row);
 
                 }
@@ -194,7 +194,7 @@ namespace Battleship.Ascii
                     if (!respuesta) i--;
             }
          }
-            Console.ResetColor();
+         Console.ResetColor();
       }
 
       private static void InitializeEnemyFleet()
