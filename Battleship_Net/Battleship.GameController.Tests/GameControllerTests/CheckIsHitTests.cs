@@ -81,13 +81,7 @@
         }
 
 		[TestMethod]
-		public void ComputerShotAllMyPositions()
-		{
-
-		}
-
-		[TestMethod]
-		public void UserShotAllComputerPositions()
+		public void HitAllPositionsOfOponent()
 		{
 
 		}
