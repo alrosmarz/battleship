@@ -112,7 +112,7 @@ namespace Battleship.Ascii
       }
 
       private static Position GetRandomPosition()
-      {
+      {     
           int rows = 8;
           int lines = 8;
           var random = new Random();
