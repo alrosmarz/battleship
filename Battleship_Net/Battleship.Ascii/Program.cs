@@ -93,12 +93,12 @@ namespace Battleship.Ascii
                     Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
                     Console.WriteLine(@"                 -\  \     /  /-");
                     Console.WriteLine(@"                   \  \   /  /");
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Yeah ! Nice hit !");
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("Miss, you hit the water");
                 }
 
@@ -120,13 +120,13 @@ namespace Battleship.Ascii
                     Console.WriteLine(@"                 -\  \     /  /-");
                     Console.WriteLine(@"                   \  \   /  /");
 
-                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.BackgroundColor = ConsoleColor.Red;
                     Console.WriteLine("Computer shot in {0}{1} and has hit your ship !", position.Column, position.Row);
 
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("Computer shot in {0}{1} and hit the water", position.Column, position.Row);
                 }
 
@@ -177,8 +177,14 @@ namespace Battleship.Ascii
 
          foreach (var ship in myFleet)
          {
-                
-            Console.WriteLine();
+           
+                if (ship.Name == "Aircraft Carrier") Console.ForegroundColor = ConsoleColor.Yellow;
+                if (ship.Name == "Battleship") Console.ForegroundColor = ConsoleColor.Gray;
+                if (ship.Name == "Submarine") Console.ForegroundColor = ConsoleColor.Blue;
+                if (ship.Name == "Destroyer") Console.ForegroundColor = ConsoleColor.Green;
+                if (ship.Name == "Patrol Boat") Console.ForegroundColor = ConsoleColor.Magenta;
+
+                Console.WriteLine();
             Console.WriteLine("Please enter the positions for the {0} (size: {1})", ship.Name, ship.Size);
             for (var i = 1; i <= ship.Size; i++)
             {
@@ -188,6 +194,7 @@ namespace Battleship.Ascii
                     if (!respuesta) i--;
             }
          }
+            Console.ResetColor();
       }
 
       private static void InitializeEnemyFleet()
