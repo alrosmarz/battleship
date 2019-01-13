@@ -16,6 +16,16 @@ namespace Battleship.Ascii
 
       static void Main()
       {
+            
+            
+            for (int i = 5; i > 0; i--)
+            {
+                Console.Clear();
+                Console.WriteLine("LOADING FUEGO PARIENTE IN " + (i).ToString());
+                System.Threading.Thread.Sleep(500);
+            }
+
+            Console.Clear();
          Console.WriteLine("                                     |__");
          Console.WriteLine(@"                                     |\/");
          Console.WriteLine("                                     ---");
@@ -30,16 +40,29 @@ namespace Battleship.Ascii
          Console.WriteLine(@"|                        Welcome to FUEGO PARIENTE!                    BB-61/");
          Console.WriteLine(@" \_________________________________________________________________________|");
          Console.WriteLine();
-
+            
          InitializeGame();
-
-         StartGame();
+            
+            
+            for (int i = 0; i < 4; i++)
+            {
+                Console.Clear();
+                
+                if (i == 0) Console.WriteLine("CREATING THE BOARD...");
+                if (i == 1) Console.WriteLine("MOVING FLEET...");
+                if (i == 2) Console.WriteLine("LOADING CANNONS...");
+                if (i == 3) Console.WriteLine("TIME TO PLAY!...");
+                System.Threading.Thread.Sleep(1000);
+            }
+            StartGame();
       }
 
       private static void StartGame()
       {
          Console.Clear();
-         Console.WriteLine("                  __");
+            //Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("                  __");
          Console.WriteLine(@"                 /  \");
          Console.WriteLine("           .-.  |    |");
          Console.WriteLine(@"   *    _.-'  \  \__/");
@@ -49,48 +72,65 @@ namespace Battleship.Ascii
          Console.WriteLine(@"  |     /_\'");
          Console.WriteLine(@"   \    \_/");
          Console.WriteLine(@"    """"""""");
+            Console.ResetColor();
 
-         do
-         {
+            do
+            {
             Console.WriteLine();
             Console.WriteLine("Player, it's your turn");
             Console.WriteLine("Enter coordinates for your shot :");
             var position = ParsePosition(Console.ReadLine());
             var isHit = GameController.CheckIsHit(enemyFleet, position);
-            if (isHit)
-            {
-               Console.Beep();
+                if (isHit)
+                {
+                    Console.Beep();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(@"                \         .  ./");
+                    Console.WriteLine(@"              \      .:"";'.:..""   /");
+                    Console.WriteLine(@"                  (M^^.^~~:.'"").");
+                    Console.WriteLine(@"            -   (/  .    . . \ \)  -");
+                    Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
+                    Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
+                    Console.WriteLine(@"                 -\  \     /  /-");
+                    Console.WriteLine(@"                   \  \   /  /");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Yeah ! Nice hit !");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("Miss, you hit the water");
+                }
 
-               Console.WriteLine(@"                \         .  ./");
-               Console.WriteLine(@"              \      .:"";'.:..""   /");
-               Console.WriteLine(@"                  (M^^.^~~:.'"").");
-               Console.WriteLine(@"            -   (/  .    . . \ \)  -");
-               Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
-               Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
-               Console.WriteLine(@"                 -\  \     /  /-");
-               Console.WriteLine(@"                   \  \   /  /");
-            }
+                Console.ResetColor();
 
-            Console.WriteLine(isHit ? "Yeah ! Nice hit !" : "Miss");
-
-            position = GetRandomPosition();
+                position = GetRandomPosition();
             isHit = GameController.CheckIsHit(myFleet, position);
             Console.WriteLine();
-            Console.WriteLine("Computer shot in {0}{1} and {2}", position.Column, position.Row, isHit ? "has hit your ship !" : "miss");
-            if (isHit)
-            {
-               Console.Beep();
+                if (isHit)
+                {
+                    Console.Beep();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(@"                \         .  ./");
+                    Console.WriteLine(@"              \      .:"";'.:..""   /");
+                    Console.WriteLine(@"                  (M^^.^~~:.'"").");
+                    Console.WriteLine(@"            -   (/  .    . . \ \)  -");
+                    Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
+                    Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
+                    Console.WriteLine(@"                 -\  \     /  /-");
+                    Console.WriteLine(@"                   \  \   /  /");
 
-               Console.WriteLine(@"                \         .  ./");
-               Console.WriteLine(@"              \      .:"";'.:..""   /");
-               Console.WriteLine(@"                  (M^^.^~~:.'"").");
-               Console.WriteLine(@"            -   (/  .    . . \ \)  -");
-               Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
-               Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
-               Console.WriteLine(@"                 -\  \     /  /-");
-               Console.WriteLine(@"                   \  \   /  /");
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Computer shot in {0}{1} and has hit your ship !", position.Column, position.Row);
 
-            }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("Computer shot in {0}{1} and hit the water", position.Column, position.Row);
+                }
+
+                Console.ResetColor();
          }
          while (true);
       }
@@ -137,7 +177,14 @@ namespace Battleship.Ascii
 
          foreach (var ship in myFleet)
          {
-            Console.WriteLine();
+           
+                if (ship.Name == "Aircraft Carrier") Console.ForegroundColor = ConsoleColor.Yellow;
+                if (ship.Name == "Battleship") Console.ForegroundColor = ConsoleColor.Gray;
+                if (ship.Name == "Submarine") Console.ForegroundColor = ConsoleColor.Blue;
+                if (ship.Name == "Destroyer") Console.ForegroundColor = ConsoleColor.Green;
+                if (ship.Name == "Patrol Boat") Console.ForegroundColor = ConsoleColor.Magenta;
+
+                Console.WriteLine();
             Console.WriteLine("Please enter the positions for the {0} (size: {1})", ship.Name, ship.Size);
             for (var i = 1; i <= ship.Size; i++)
             {
@@ -147,6 +194,7 @@ namespace Battleship.Ascii
                     if (!respuesta) i--;
             }
          }
+            Console.ResetColor();
       }
 
       private static void InitializeEnemyFleet()
