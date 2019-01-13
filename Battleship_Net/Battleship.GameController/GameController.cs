@@ -104,6 +104,17 @@ namespace Battleship.GameController
             return "El valor introducido no es correct, ingrese uno nuevo";
         }
 
+        public static string CoolHappyEnding()
+        {
+            Random r = new Random();
+            string[] arrCoolMessage = { "FELICIDADES PARIENTE , HAS GANADO!", "ANIMAS DEL PURGATORIO, ERES EL MEJOR!", " PURO PA DELANTE COMPA ! GANASTE!" };
+            r.Next(0, 2);
+            return arrCoolMessage[r.Next(0, 2)];
+            //return "FELICIDADES PARIENTE , HAS GANADO! ***";
+
+        }
+     
+
 		public static bool GameOver(List<Ship> enemyFleet)
 		{
 			bool result = false;

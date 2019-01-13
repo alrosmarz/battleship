@@ -86,5 +86,11 @@
 
 		}
 
-	}
+        [TestMethod]
+        public void ShouldShowCoolHappyEndingMessage()
+        {
+
+        }
+
+    }
 }
