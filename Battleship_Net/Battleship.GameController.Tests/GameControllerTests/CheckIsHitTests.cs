@@ -79,5 +79,18 @@
         {
             GameController.CheckIsHit(null, new Position(Letters.H, 1));
         }
+
+		[TestMethod]
+		public void HitAllPositionsOfOponent()
+		{
+
+		}
+
+        [TestMethod]
+        public void ShouldShowCoolHappyEndingMessage()
+        {
+
+        }
+
     }
 }
