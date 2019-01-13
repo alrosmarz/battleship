@@ -49,32 +49,40 @@ namespace Battleship.Ascii
          Console.WriteLine(@"  |     /_\'");
          Console.WriteLine(@"   \    \_/");
          Console.WriteLine(@"    """"""""");
+		 bool endGame = false;
 
-         do
-         {
-            Console.WriteLine();
-            Console.WriteLine("Player, it's your turn");
-            Console.WriteLine("Enter coordinates for your shot :");
-            var position = ParsePosition(Console.ReadLine());
-            var isHit = GameController.CheckIsHit(enemyFleet, position);
-            if (isHit)
-            {
-               Console.Beep();
+			do
+			{
+				Console.WriteLine();
+				Console.WriteLine("Player, it's your turn");
+				Console.WriteLine("Enter coordinates for your shot :");
+				var position = ParsePosition(Console.ReadLine());
+				var isHit = GameController.CheckIsHit(enemyFleet, position);
+				if (isHit)
+				{
+					Console.Beep();
 
-               Console.WriteLine(@"                \         .  ./");
-               Console.WriteLine(@"              \      .:"";'.:..""   /");
-               Console.WriteLine(@"                  (M^^.^~~:.'"").");
-               Console.WriteLine(@"            -   (/  .    . . \ \)  -");
-               Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
-               Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
-               Console.WriteLine(@"                 -\  \     /  /-");
-               Console.WriteLine(@"                   \  \   /  /");
-            }
+					Console.WriteLine(@"                \         .  ./");
+					Console.WriteLine(@"              \      .:"";'.:..""   /");
+					Console.WriteLine(@"                  (M^^.^~~:.'"").");
+					Console.WriteLine(@"            -   (/  .    . . \ \)  -");
+					Console.WriteLine(@"               ((| :. ~ ^  :. .|))");
+					Console.WriteLine(@"            -   (\- |  \ /  |  /)  -");
+					Console.WriteLine(@"                 -\  \     /  /-");
+					Console.WriteLine(@"                   \  \   /  /");
+				}
 
-            Console.WriteLine(isHit ? "Yeah ! Nice hit !" : "Miss");
+				Console.WriteLine(isHit ? "Yeah ! Nice hit !" : "Miss");
 
-            position = GetRandomPosition();
-            isHit = GameController.CheckIsHit(myFleet, position);
+				endGame = GameController.GameOver(enemyFleet);
+
+				if (endGame)
+				{
+					break;
+				}
+
+			position = GetRandomPosition();
+			isHit = GameController.CheckIsHit(myFleet, position);
             Console.WriteLine();
             Console.WriteLine("Computer shot in {0}{1} and {2}", position.Column, position.Row, isHit ? "has hit your ship !" : "miss");
             if (isHit)
@@ -91,8 +99,13 @@ namespace Battleship.Ascii
                Console.WriteLine(@"                   \  \   /  /");
 
             }
-         }
-         while (true);
+			endGame = GameController.GameOver(myFleet);
+			}
+         while (!endGame);
+
+			Console.ReadLine();
+			Console.Clear();
+			Main();
       }
 
         internal static Position ParsePosition(string input)

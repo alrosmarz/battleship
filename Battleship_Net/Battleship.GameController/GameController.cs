@@ -32,6 +32,7 @@ namespace Battleship.GameController
         /// </exception>
         public static bool CheckIsHit(IEnumerable<Ship> ships, Position shot)
         {
+			bool isHit = false;
             if (ships == null)
             {
                 throw new ArgumentNullException("ships");
@@ -48,12 +49,13 @@ namespace Battleship.GameController
                 {
                     if (position.Equals(shot))
                     {
-                        return true;
+						position.IsHitted = true;
+						isHit = true;
                     }
                 }
             }
 
-            return false;
+            return isHit;
         }
 
         /// <summary>
@@ -101,5 +103,13 @@ namespace Battleship.GameController
         {
             return "El valor introducido no es correct, ingrese uno nuevo";
         }
-     }
+
+		public static bool GameOver(List<Ship> enemyFleet)
+		{
+			bool result = false;
+			result = enemyFleet.TrueForAll(x => x.IsStunk());
+
+			return result;
+		}
+	}
 }

@@ -100,6 +100,14 @@ namespace Battleship.GameController.Contracts
             }
         }
 
+		public bool IsStunk()
+		{
+			bool result = false;
+			result = this.Positions.TrueForAll(x => x.IsHitted);
+
+			return result;
+		}
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
