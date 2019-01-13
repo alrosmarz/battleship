@@ -104,8 +104,11 @@ namespace Battleship.GameController
 
         public static string CoolHappyEnding()
         {
-
-            return "FELICIDADES PARIENTE , HAS GANADO! ***";
+            Random r = new Random();
+            string[] arrCoolMessage = { "FELICIDADES PARIENTE , HAS GANADO!", "ANIMAS DEL PURGATORIO, ERES EL MEJOR!", " PURO PA DELANTE COMPA ! GANASTE!" };
+            r.Next(0, 2);
+            return arrCoolMessage[r.Next(0, 2)];
+            //return "FELICIDADES PARIENTE , HAS GANADO! ***";
 
         }
      }
