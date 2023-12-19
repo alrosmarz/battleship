@@ -20,6 +20,7 @@ namespace Battleship.Ascii.UITests
     {
         public PlayGameTest()
         {
+            
         }
 
         List<string> shipPositions = new List<string>()
