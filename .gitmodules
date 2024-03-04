@@ -1,0 +1,3 @@
+[submodule "Navegador"]
+	path = Navegador
+	url = https://github.com/alrosmarz/NavegadorDinamico
